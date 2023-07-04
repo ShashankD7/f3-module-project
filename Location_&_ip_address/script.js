@@ -12,16 +12,16 @@ function handleIP(data) {
   ip = data.ip;
   pInHtml.innerText = ip;
   fetch(
-    `https://api.geoapify.com/v1/ipinfo?apiKey=501d5e50632f429895a3fa54d68e8131`
+    `https://ipinfo.io/${ip}/json?token=d27e1ac6bbfcdc`
   )
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      lat = data.location.latitude;
-      long = data.location.longitude;
-      city = data.city.name;
-      org = data.country.name;
-      region = data.state.name;
+      lat = data.loc.split(",")[0];
+      long = data.loc.split(",")[1];
+      city = data.city;
+      org = data.org;
+      region = data.region;
       host = ip;
 
       let values = [lat, city, org, long, region, host];
